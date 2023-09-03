@@ -8,8 +8,10 @@ const API_URL = "https://api.adviceslip.com/advice";
 app.use(express.static("public"));
 
 app.get("/", async(req, res) => {
-    const result=await axios.get(API_URL)
-    res.send(result.data.slip.advice);
+    const result = await axios.get(API_URL);
+    res.render("index.ejs", {
+        advice: result.data.slip.advice
+    });
 });
 
 app.listen(port, () => {
