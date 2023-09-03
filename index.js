@@ -7,11 +7,16 @@ const API_URL = "https://api.adviceslip.com/advice";
 
 app.use(express.static("public"));
 
-app.get("/", async(req, res) => {
-    const result = await axios.get(API_URL);
-    res.render("index.ejs", {
-        advice: result.data.slip.advice
-    });
+app.get("/", async (req, res) => {
+    try {
+        const result = await axios.get(API_URL);
+        res.render("index.ejs", {
+            advice: result.data.slip.advice
+        });
+    } catch (error) {
+        console.log(error.result.data);
+        res.status(500);
+    }
 });
 
 app.listen(port, () => {
