@@ -6,6 +6,7 @@
 .bg{
     display: flex;
     background-image: url("../images/background.jpg");
+    font-weight: 500;
     font-family: cursive;
     height: 100vh;
     
