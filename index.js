@@ -3,11 +3,13 @@ import axios from "axios";
 
 const app = express();
 const port = 3000;
+const API_URL = "https://api.adviceslip.com/advice";
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-    res.send("Hey there!");
+app.get("/", async(req, res) => {
+    const result=await axios.get(API_URL)
+    res.send(result.data.slip.advice);
 });
 
 app.listen(port, () => {
